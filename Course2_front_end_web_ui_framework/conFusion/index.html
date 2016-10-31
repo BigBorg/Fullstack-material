@@ -56,7 +56,7 @@
                     <li>
 			<a href="contactus.html"><span class="glyphicon glyphicon-envelope"></span>Contact</a></li>
                 </ul>
-                <form class="navbar-form pull-right" action="#" method="POST">
+                <form class="navbar-form navbar-right" action="#" method="POST">
                     <input type="email" placeholder="Email" name="email">
                     <input type="password" placeholder="Password" name="password">
                     <div class="checkbox">
@@ -84,7 +84,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-2">
                     <p style="padding:40px;"></p>
-                    <a href="#reserveform" class="btn btn-warning">Reserve Table</a>
+                    <a href="#reserveform" class="btn btn-warning btn-block">Reserve Table</a>
                 </div>
             </div>
         </div>
@@ -192,12 +192,17 @@
                             <label>Date and Time</label>
                         </div>
                         <div class="col-xs-12 col-md-3">
-                            <input type="date" name="date">
+                            <div class="form-group has-feedback">
+                            <input class="form-control" type="date" name="date" placeholder="Date">
                             <span class="form-control-feedback glyphicon glyphicon-calendar"></span>
+                            </div>
                         </div>
                         <div class="col-xs-12 col-md-push-1 col-md-3">
-                            <input type="time" name="time">
-                            <span class="glyphicon glyphicon-time form-control-feedback"></span>
+                            <div class="form-group has-feedback">
+                                <input class="form-control" type="time" name="time" placeholder="Time">
+                                <span class="glyphicon glyphicon-time form-control-feedback"></span>
+                                
+                            </div>
                         </div>
                         <div class="col-md-1"></div>
                 </div>
@@ -212,7 +217,7 @@
                     <button class="close" type="button" data-dismiss="alert">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    Warning: Please <a href="#telephone">call</a> us to reserve for more than six guests.
+                    Warning: Please <a href="tel:+852-1234-5678">call</a> us to reserve for more than six guests.
                 </div>
             </div>
         </div>
