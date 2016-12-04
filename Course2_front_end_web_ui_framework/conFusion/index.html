@@ -9,9 +9,11 @@
          content must come *after* these tags -->
     <title>Ristorante Con Fusion</title>
 	        <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-	<link href="css/mystyles.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap-social/bootstrap-social.css" rel="stylesheet">
+    <link href="css/mystyles.css" rel="stylesheet">
 	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,6 +24,88 @@
 </head>
 
 <body>
+
+<div id="reserveModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title">Reserve Table</h4>
+                    </div>
+                    <div class="modal-body">
+                            <form id="reserveform" action="#" method="post" class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label for="num_guests">Number of Guests</label>
+                        </div>
+                            <div class="col-md-8">
+                            <input type="radio" name="num" id="num_guests">1 &nbsp;
+                            <input type="radio" name="num" id="num_guests">2 &nbsp;
+                            <input type="radio" name="num" id="num_guests">3 &nbsp;
+                            <input type="radio" name="num" id="num_guests">4 &nbsp;
+                            <input type="radio" name="num" id="num_guests">5 &nbsp;
+                            <input type="radio" name="num" id="num_guests">6 &nbsp;
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Sections</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-success active">
+                                    <input type="checkbox" name="section"> Non-Smoking
+                                </label>
+                                <label class="btn btn-danger">
+                                    <input type="checkbox" name="section"> Smoking
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                            <div class="col-md-4">
+                                <label>Date and Time</label>
+                            </div>
+                            <div class="col-xs-12 col-md-3">
+                                <div class="form-group has-feedback">
+                                <input class="form-control" type="date" name="date" placeholder="Date">
+                                <span class="form-control-feedback glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-push-1 col-md-3">
+                                <div class="form-group has-feedback">
+                                    <input class="form-control" type="time" name="time" placeholder="Time">
+                                    <span class="glyphicon glyphicon-time form-control-feedback"></span>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-push-4 col-md-8">
+                            <button class="btn btn-primary" type="submit">Reserve</button>
+                            <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="row">&nbsp;</div>
+                    </form>
+                    <div class="alert alert-warning alert-dismissable" role="alert">
+                    <button class="close" type="button" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    Warning: Please <a href="tel:+852-1234-5678">call</a> us to reserve for more than six guests.
+                </div>
+                    </div>  <!-- modal-body -->
+                </div>
+            </div>
+        </div>
+
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -57,7 +141,7 @@
 			<a href="contactus.html"><span class="glyphicon glyphicon-envelope"></span>Contact</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a data-toggle="modal" data-target="#loginModal">
+                    <li><a id="loginButton">
                     <span class="glyphicon glyphicon-log-in"></span> Login</a>
                     </li>
                 </ul>
@@ -108,7 +192,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-2">
                     <p style="padding:40px;"></p>
-                    <a class="btn btn-warning btn-block" data-toggle="modal" data-target="#reserveModal">Reserve Table</a>
+                    <a id="reserveButton" class="btn btn-warning btn-block">Reserve Table</a>
                 </div>
             </div>
         </div>
@@ -169,7 +253,14 @@
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
-
+                    <div class="btn-group" id="carouselButtons">
+                    	<button class="btn btn-danger btn-xs" id="carousel-pause">
+                	    	<span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+                    	</button>
+                    	<button class="btn btn-danger btn-xs" id="carousel-play">
+                	    	<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                    	</button>
+                	</div>
                 </div>
             </div>
         </div>
@@ -249,81 +340,6 @@
             </div>
         </div>
     </div>
-        <div id="reserveModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-heading">
-                        <h4>Reserve Table</h4>
-                    </div>
-                    <div class="modal-body">
-                            <form id="reserveform" action="#" method="post" class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            <label for="num_guests">Number of Guests</label>
-                        </div>
-                            <div class="col-md-8">
-                            <input type="radio" name="num" id="num_guests">1 &nbsp;
-                            <input type="radio" name="num" id="num_guests">2 &nbsp;
-                            <input type="radio" name="num" id="num_guests">3 &nbsp;
-                            <input type="radio" name="num" id="num_guests">4 &nbsp;
-                            <input type="radio" name="num" id="num_guests">5 &nbsp;
-                            <input type="radio" name="num" id="num_guests">6 &nbsp;
-                            <br>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            <label>Sections</label>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-success active">
-                                    <input type="checkbox" name="section"> Non-Smoking
-                                </label>
-                                <label class="btn btn-danger">
-                                    <input type="checkbox" name="section"> Smoking
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                            <div class="col-md-4">
-                                <label>Date and Time</label>
-                            </div>
-                            <div class="col-xs-12 col-md-3">
-                                <div class="form-group has-feedback">
-                                <input class="form-control" type="date" name="date" placeholder="Date">
-                                <span class="form-control-feedback glyphicon glyphicon-calendar"></span>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-md-push-1 col-md-3">
-                                <div class="form-group has-feedback">
-                                    <input class="form-control" type="time" name="time" placeholder="Time">
-                                    <span class="glyphicon glyphicon-time form-control-feedback"></span>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-md-1"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-push-4 col-md-3">
-                            <button class="btn btn-primary">Reserve</button>
-                        </div>
-                    </div>
-                    <div class="row">&nbsp;</div>
-                    </form>
-                    <div class="alert alert-warning alert-dismissable" role="alert">
-                    <button class="close" type="button" data-dismiss="alert">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    Warning: Please <a href="tel:+852-1234-5678">call</a> us to reserve for more than six guests.
-                </div>
-                    </div>  <!-- modal-body -->
-                </div>
-            </div>
-        </div>
 
     </div>
 
@@ -369,14 +385,41 @@
             </div>
         </div>
     </footer>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();
-         });
+            $("#mycarousel").carousel( { interval: 2000 } );
+            
+            $("#carousel-pause").click(function(){
+                $("#mycarousel").carousel('pause');
+            });
+            
+            $("#carousel-play").click(function(){
+                $("#mycarousel").carousel('cycle');
+            });
+
+            $("#reserveButton").click(function(){
+            	if ($("#reserveModal").show == false){
+            		$("#reserveModal").modal("show");
+            	}
+            	else{
+            		$("#reserveModal").modal("hide");
+            	}
+            });
+
+            $("#loginButton").click(function(){
+            	if ($("#loginModal").show == false){
+            		$("#loginModal").modal("show");
+            	}
+            	else{
+            		$("#reserveModal").modal("hide");
+            	}
+            });
+
+        });
     </script>
 </body>
 
