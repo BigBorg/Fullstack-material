@@ -150,9 +150,9 @@ angular.module('confusionApp', []).controller('MenuController', ['$scope', funct
     $scope.commentData = {name:"", rating:5, comment:"", date:new Date()};
     $scope.submitComment = function(){
       console.log("submitComment function called.")
-      commentEle = {rating:$scope.commentData.rating, comment:$scope.commentData.comment, author:$scope.commentData.name, date:new Date()};
+      var commentEle = {'rating':$scope.commentData.rating, 'comment':$scope.commentData.comment, 'author':$scope.commentData.name, 'date':new Date()};
       $scope.$parent.dish.comments.push(commentEle);
       $scope.commentData = {name:"", rating:5, comment:"", date:new Date()};
-      $scope.commentForm.setPristine();
+      $scope.commentForm.$setPristine()
     };
 }]);
