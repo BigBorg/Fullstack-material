@@ -60,9 +60,8 @@ angular.module('confusionApp')
     };
 }])
 
-.controller('dishDetailController', ['$scope', 'menuFactory', function($scope, menuFactory) {
-            $scope.filterText="";
-            $scope.dish= menuFactory.getDish(3);
+.controller('dishDetailController', ['$scope', 'menuFactory', '$routeParams', function($scope, $routeParams, menuFactory) {
+            var dish= menuFactory.getDish(parseInt($routeParams.id,10));                        $scope.dish = dish;
         }])
 
 .controller('DishCommentController', ['$scope', function($scope){
