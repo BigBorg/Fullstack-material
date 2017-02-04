@@ -60,18 +60,19 @@ angular.module('confusionApp')
     };
 }])
 
-.controller('dishDetailController', ['$scope', 'menuFactory', '$routeParams', function($scope, $routeParams, menuFactory) {
-            var dish= menuFactory.getDish(parseInt($routeParams.id,10));                        $scope.dish = dish;
-        }])
+.controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
+            var dish= menuFactory.getDish(parseInt($stateParams.id,10));
+                        $scope.dish = dish; 
+                    }])
 
 .controller('DishCommentController', ['$scope', function($scope){
     
     $scope.commentData = {name:"", rating:5, comment:"", date:new Date()};
     $scope.submitComment = function(){
-      console.log("submitComment function called.")
+      console.log("submitComment function called.");
       var commentEle = {'rating':$scope.commentData.rating, 'comment':$scope.commentData.comment, 'author':$scope.commentData.name, 'date':new Date()};
       $scope.$parent.dish.comments.push(commentEle);
       $scope.commentData = {name:"", rating:5, comment:"", date:new Date()};
-      $scope.commentForm.$setPristine()
+      $scope.commentForm.$setPristine();
     };
 }]);
